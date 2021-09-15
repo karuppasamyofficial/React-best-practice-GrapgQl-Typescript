@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Posts } from "../components/common/interface/Posts";
 import { useQuery, useMutation } from "@apollo/client";
 import PostGrid from "../components/posts/PostGrid";
 import { GET_POSTS } from "../hooks/posts/GetPosts";
+import { getPosts} from "../store/action-creator";
+import { useSelector, useDispatch } from "react-redux";
+import  {bindActionCreators} from "redux"
+
+
 
 interface PostsType {
   posts: {
@@ -14,16 +19,18 @@ const Home: React.FC = () => {
   const { data ,error,loading} = useQuery<PostsType>(GET_POSTS, {
     variables: { options: { paginate: { page: 1, limit: 10 } } },
   });
+ const dispatch = useDispatch()
+  
 
-  // const posts:Posts[]=[{
-
-  //     id:"",
-  //     title:"kmf",
-  //     body:"klk"
-  // }]
-
+  useEffect(() => {
+    if(data){
+      console.log("logging",data)
+      // dispatch(getPosts(data.posts.data))
+    }
+   
+  }, [data])
+ 
   if(error)return <p>Error in API </p>
-  // if(loading) return <div  id="error-message">Loding Posts.....</div>
   return (
     <div>
       <h1  className="error-message">Loding Posts</h1>
