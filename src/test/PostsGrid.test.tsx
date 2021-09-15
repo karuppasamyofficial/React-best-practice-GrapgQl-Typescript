@@ -53,7 +53,6 @@ describe("Home component", () => {
     const productTag = await findByText("karuppasamyf");
   expect(productTag).toBeInTheDocument();
 
-    // const linkElement = getByTestId("error-message");
-    // expect(wrapper.find('#error-message').text()).toBe('Loding Posts')
+    
   });
 });
