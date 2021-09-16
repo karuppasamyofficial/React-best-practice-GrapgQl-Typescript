@@ -1,17 +1,13 @@
-import *  as actionTypes from "../actionTypes"
+import { Posts } from "../../components/common/interface/Posts";
+import * as actionTypes from "../actionTypes";
 
-interface Posts {
-  id: number;
-  title: string;
-  body: string;
-}
-type PostState = {
+interface PostGridProps {
   posts: Posts[];
-};
+}
 
 type Action = {
   type: string;
-  payload: PostState;
+  payload: Posts[];
 };
 
 const initialState = {
@@ -19,14 +15,15 @@ const initialState = {
 };
 
 export const PostReducer = (
-  state: PostState = initialState,
+  state: PostGridProps = initialState,
   action: Action
 ) => {
   switch (action.type) {
     case actionTypes.GET_POSTS:
-      return { ...state, possts: action.payload };
-    // case "CREATE_POST":
-    //   return { ...state, possts: action.payload };
+      return {
+        ...state,
+        posts: action.payload,
+      };
 
     default:
       return state;

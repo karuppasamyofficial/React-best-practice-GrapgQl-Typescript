@@ -1,28 +1,16 @@
-import { Dispatch } from "redux"
-import *  as actionTypes from "../actionTypes"
+import { Dispatch } from "redux";
+import { Posts } from "../../components/common/interface/Posts";
+import * as actionTypes from "../actionTypes";
+type Action = {
+  type: string;
+  payload: Posts[];
+};
 
-interface Posts {
-    id: number;
-    title: string;
-    body: string;
-  }
-  type PostState = {
-    posts: Posts[];
-  };
-
-
-  type Action = {
-    type: string;
-    payload: PostState;
-  };
-export const getPosts=(posts:PostState)=>{
-return(dispatch:Dispatch<Action>)=>{
+export const getPosts = (posts: Posts[]) => {
+  return (dispatch: Dispatch<Action>) => {
     dispatch({
-        type:actionTypes.GET_POSTS,
-        payload:posts
-    })
-}
-   
-
-}
-
+      type: actionTypes.GET_POSTS,
+      payload: posts,
+    });
+  };
+};
